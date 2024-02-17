@@ -1,423 +1,566 @@
 <template>
   <header>
-    <div class="hBottom">
-      <h1 @click="goToHome()"><img src="../assets/logo-color.svg" alt="펫테랑동물병원"></h1>
-      <nav class="gnb">
+    <div class="header-wrap">
+      <h1 class="logo" @click="this.$router.push('/')">
+        <div>
+          <span class="color-main">ㅅ</span>
+          <span class="color-sub">ㄷ</span>
+          <br>
+          <span class="color-sub">ㅅ</span>
+          <span class="color-main">ㄷ</span>
+        </div>
+      </h1>
+      <!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feTurbulence -->
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="filters">
+        <defs>
+          <filter id="sketchy-0">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="0" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <filter id="sketchy-1">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="1" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <filter id="sketchy-2">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="2" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <filter id="sketchy-3">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="3" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <filter id="sketchy-4">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="4" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+          <filter id="sketchy-5">
+            <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="10" result="noise" seed="5" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gnb">
+        <div class="burger-wrap">
+          <div class="burgerMenu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
         <ul>
-          <li>
-            <a class="mainNav">병원소개</a>
-            <ul class="subNav">
-              <li @click="goToGreetings()">인사말</li>
-              <li @click="goToVetHistory()">병원연혁</li>
-              <li @click="goToDocHistory()">의료진</li>
+          <div class="menu-top"><span>MENU</span></div>
+          <li class="depth1">
+            <div class="nav-txt">소개<i class="fa-solid fa-caret-down"></i></div>
+            <ul>
+              <li class="depth2" @click="this.$router.push('/intro')"><div class="nav-txt">기숙사</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/intro2')"><div class="nav-txt">시설</div></li>
             </ul>
           </li>
-          <li>
-            <a class="mainNav">진료안내</a>
-            <ul class="subNav">
-              <li @click="goToSubject()">진료과목</li>
-              <li @click="goToReview()">진료후기</li>
+          <li class="bound"></li>
+          <li class="depth1">
+            <div class="nav-txt">게시판<i class="fa-solid fa-caret-down"></i></div>
+            <ul>
+              <li class="depth2" @click="this.$router.push('/board/notice')"><div class="nav-txt">공지사항</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/board/free')"><div class="nav-txt">자유</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/board/anon')"><div class="nav-txt">익명</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/board/report')"><div class="nav-txt">신고</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/board/lost')"><div class="nav-txt">분실물</div></li>
             </ul>
           </li>
-          <li onclick="location.href='/qnaMain'"><a class="mainNav">QnA</a></li>
-          <li @click="goToGoods()"><a class="mainNav">애완용품</a></li>
-          <li v-if="user.user_id == ''" class="topMenu login" @click="goToLogin()">로그인</li>
-          <li v-else class="topMenu login" @click="logout()">로그아웃</li>
-          <li v-if="user.user_id == ''" class="topMenu join" @click="goToJoin()">회원가입</li>
-          <li v-else-if="adminCheck == 1" class="topMenu join" @click="goToAdmin()">관리 페이지</li>
-          <li v-else class="topMenu"></li>
-          <li v-if="docCheck == 0" class="topMenu icon user" @click="goToMypage()"><img src="../assets/icon-mypage.svg" alt="마이페이지"></li>
-          <li v-else class="topMenu icon user" @click="goToDocpage()"><img src="../assets/icon-mypage.svg" alt="의료진페이지"></li>
-          <li class="topMenu icon res" @click="goToRes()"><img src="../assets/icon-reservation.svg" alt="진료 예약"></li>
+          <li class="bound"></li>
+          <li class="depth1">
+            <div class="nav-txt">안내<i class="fa-solid fa-caret-down"></i></div>
+            <ul>
+              <li class="depth2" @click="this.$router.push('/joinInfo')"><div class="nav-txt">입사/퇴사</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/scoreStandard')"><div class="nav-txt">상벌점</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/foods')"><div class="nav-txt">식단</div></li>
+              <li class="bound"></li>
+              <li class="depth2" @click="this.$router.push('/map')"><div class="nav-txt">오시는 길</div></li>
+            </ul>
+          </li>
+          <li class="bound"></li>
+          <li class="depth1">
+            <div class="nav-txt" @click="this.$router.push('/res')">자습실 예약<i class="fa-solid fa-caret-down"></i></div>
+          </li>
+          <!-- <li class="bound"></li>
+          <li class="depth1">
+            <div class="nav-txt">Product<i class="fa-solid fa-caret-down"></i></div>
+            <ul>
+              <li class="depth2"><div class="nav-txt">Product1</div></li>
+              <li class="bound"></li>
+              <li class="depth2"><div class="nav-txt">Product2</div></li>
+              <li class="bound"></li>
+              <li class="depth2"><div class="nav-txt">Product3</div></li>
+              <li class="bound"></li>
+              <li class="depth2"><div class="nav-txt">Product4</div></li>
+              <li class="bound"></li>
+              <li class="depth2"><div class="nav-txt">Product5</div></li>
+            </ul>
+          </li>
+          <li class="bound"></li> -->
         </ul>
-      </nav>
+      </div>
     </div>
-    <div class="subBg"></div>
+    <div class="bg"></div>
   </header>
 </template>
 
 <script>
-import axios from 'axios'
 import $ from 'jquery'
 
 export default {
-  data() {
-    return {
-      adminCheck: 0,
-      docCheck: 0,
-    }
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
-  mounted() {
-    if (this.user.user_id == '') {
-      // 일단은 로그인 여부 체크
-    } else {
-      axios({
-        url: "http://localhost:3000/auth/admin_check",
-        method: "POST",
-        data: {
-          user_no: this.user.user_no,
-        },
-      })
-        .then(res => {
-          if (res.data.message == 'admin') {
-            this.adminCheck = 1;
-        
-          }
-        })
-        .catch(() => {
-          this.$swal("접속 오류");
-        })
-        
-      axios({
-        url: "http://localhost:3000/auth/doc_check",
-        method: "POST",
-        data: {
-          user_id: this.user.user_id,
-        },
-      })
-        .then(res => {
-          if (res.data.message == 'doc') {
-            this.docCheck = 1;
-          }
-        })
-        .catch(() => {
-          this.$swal("접속 오류");
-        })  
-    }
 
+  mounted() {
     this.myfunction() 
-      
   },
   methods: {
+  // 모바일 gnb 쪽 버그 픽스가 덜 됐음
     myfunction() {
-      var newBg = $('<div class="subBg"></div>');
-    
-      $('header').append(newBg);
-      
-      const gnb = '.gnb';
-      const main = '.mainNav';
-      const sub = '.subNav';
-      const bg = '.subBg';
-      const user = '.user';
-      const res = '.res';
-      
-      $(gnb).hover(function(){
-        $(sub + ', ' + bg).stop().slideDown('fast');
-        $(main).removeClass('active');
-      },function(){
-        $(sub + ', ' + bg).stop().slideUp('fast');
-        $(main).removeClass('active');
+      const burger = $(".gnb>.burger-wrap");
+      const gnb = burger.parent(".gnb");
+      const depth1 = gnb.find(".depth1");
+      //const depth1Menu = gnb.find(".depth1>ul")
+      //const header = $(".header-wrap");
+
+      burger.click(function() {
+        gnb.toggleClass("active");
       });
 
-      $(main).first().focus(function(){
-        $(gnb).trigger('mouseenter');
-        $(this).addClass('active');
-      }); 
-      
-      $(main).focus(function(){
-        $(main).removeClass('active');
-        $(this).addClass('active');
+      depth1.find(">.nav-txt").click(function() {
+        $(this).parent(depth1).toggleClass("active");
+        $(this).parent(depth1).siblings().removeClass("active");
       });
-
-      $(main).first().keydown(function(e){
-        if(e.keyCode == 9){
-          if(e.shiftKey){
-            $(gnb).trigger('mouseleave');
-            $(this).removeClass('active');
+      
+      let desktop = function() {
+        $(document).mousemove(function() {
+          depth1.mouseenter(function() {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+          });
+          gnb.mouseleave(function() {
+            depth1.removeClass("active");
+          });
+        });
+      };
+      
+      if($(window).width() <= 768) {
+        $(window).resize(function() {
+          if($(window).width() > 768) {
+            depth1.find(">.nav-txt").off("click");
+            // gnb.removeClass("active");
+            // depth1.removeClass("active");
+            desktop();
           }
-        }
-      });
-      
-      $(sub).last().find('li:last a').keydown(function(e){
-        if(e.keyCode == 9){
-          if(!e.shiftKey){
-            $(gnb).trigger('mouseleave');
-            $(this).removeClass('active');
+        });
+      } else if($(window).width() > 768) {
+        desktop();
+        $(window).resize(function() {
+          if($(window).width() <= 768) {
+            depth1.off("mouseenter");
+            gnb.off("mouseleave");
+            // depth1.removeClass("active");
           }
-        } 
-      });
-      $(sub).find('li:last a').focus(function(){
-        $(main).removeClass('active');
-        $(this).parents(sub).prev().addClass('active');
-      });
-
-      $(user).hover(
-        function() {
-          $(this).find('img').attr('src', require('../assets/icon-mypage-hover.svg'));
-        },
-        function() {
-          $(this).find('img').attr('src', require('../assets/icon-mypage.svg'));
-        }
-      );
-      $(res).hover(
-        function() {
-          $(this).find('img').attr('src', require('../assets/icon-reservation-hover.svg'));
-        },
-        function() {
-          $(this).find('img').attr('src', require('../assets/icon-reservation.svg'));
-        }
-      )
-    },
-    goToHome() {
-      this.$router.push({ path: '/' });
-    },
-    goToLogin() {
-      this.$router.push({ path: '/login' });
-    },
-    goToJoin() {
-      this.$router.push({ path: '/join1' });
-    },
-    goToAdmin() {
-      this.$router.push({ path: '/admin/userlist' });
-    },
-    goToMypage() {
-      this.$router.push({ path: '/mypage' });
-    },
-    goToDocpage() {
-      this.$router.push({ path: '/docpage' });
-    },
-    goToRes() {
-      this.$router.push({ path: '/docSelect' });
-    },
-    goToReview() {
-      this.$router.push({ path: '/review' });
-    },
-    goToGoods() {
-      this.$router.push({ path: '/goodsList' });
-    },
-    goToGreetings() {
-      this.$router.push({ path: '/greetings' });
-    },
-    goToVetHistory() {
-      this.$router.push({ path: '/vetHistory' });
-    },
-    goToDocHistory() {
-      this.$router.push({ path: '/dochistory' });
-    },
-    goToSubject() {
-      this.$router.push({ path: '/subject/intro1' });
-    },
-    logout() {
-      this.$store.commit("user", {});
-      this.$swal({
-        icon: 'success',
-        title: '로그아웃되셨습니다.',
-        showConfirmButton: false,
-        scrollbarPadding: false,
-        timer: 1500
-      })
-        .then(() => {
-          window.location.href = "http://localhost:8080";
-        })
+        });
+      }
     }
   }
 }
 </script>
 
-<style src="../assets/css/global.css" scoped />
+<style src="../assets/css/global.css" scoped></style>
 <style scoped>
-
-header {
-  position: relative;
-  height: 80px;
-  z-index: 500;
-  background-color: var(--color-white);
+@font-face {
+  font-family: 'netmarbleB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.hBottom {
+header {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-wrap {
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease-out;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 0.7em;
+  background-color: var(--color-main);
+  font-family: "netmarbleB", sans-serif;
+  font-size: 1.4em;
+  text-align: center;
+  line-height: 0.7;
+  letter-spacing: -0.1em;
+  box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease-out;
+}
+
+.logo:hover {
+  animation: sketchy 0.5s linear infinite;
+}
+
+.logo div span:nth-of-type(1) {
+  animation-delay: 0.3s;
+}
+
+.logo div span:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+.logo div span:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+
+.logo div span:nth-of-type(4) {
+  animation-delay: 0.2s;
+}
+
+.color-main {
+  color: var(--color-main-faint);
+}
+
+.color-sub {
+  color: var(--color-sub-faint);
+}
+
+svg#filters {
+  visibility: hidden;
+  position: absolute;
+}
+
+
+@keyframes sketchy {
+	0% {
+		filter: url("#sketchy-0");
+	}
+	20% {
+		filter: url("#sketchy-1");
+	}
+	40% {
+		filter: url("#sketchy-2");
+	}
+	60% {
+		filter: url("#sketchy-3");
+	}
+	80% {
+		filter: url("#sketchy-4");
+	}
+	100% {
+		filter: url("#sketchy-5");
+	}
+}
+
+.gnb .burger-wrap {
   position: relative;
-  max-width: 1374px;
-  height: 80px;
-  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 130;
+}
+
+.gnb .burgerMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 24px;
+}
+
+.gnb .line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #333;
+  transition: all 0.3s ease-out;
+}
+
+.gnb .line:nth-of-type(1) {
+  top: 0;
+}
+
+.gnb .line:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gnb .line:nth-of-type(3) {
+  bottom: 0;
+}
+
+.gnb>ul {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: left 0.4s ease-out;
+  background-color: white;
+}
+
+.gnb.active>ul {
+  left: 0;
+}
+
+.gnb.active .line:nth-of-type(1) {
+  width: 20px;
+  transform: translate(10px, 11px) rotate(45deg);
+  background-color: white;
+}
+
+.gnb.active .line:nth-of-type(2) {
+  display: none;
+}
+
+.gnb.active .line:nth-of-type(3) {
+  width: 20px;
+  transform: translate(10px, -11px) rotate(-45deg);
+  background-color: white;
+}
+
+.gnb .menu-top,
+.gnb .depth1 {
+  width: 100%;
+  height: 60px;
+}
+
+.gnb .menu-top {
+  z-index: 110;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  transition: left 0.4s ease-out;
+}
+
+.gnb.active .menu-top {
+  left: 0;
+}
+
+.gnb .depth1 {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.gnb .depth1 .nav-txt {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* logo */
-.hBottom h1 {
-  display: block;
-  line-height: 0;
-  cursor: pointer;
+.gnb .depth1 .nav-txt .fa-caret-down {
+  color: #aaa;
+  transition: transform 0.2s ease-out;
 }
 
-.hBottom h1 img {
-  height: 50px;
+.gnb .depth1.active .nav-txt .fa-caret-down {
+  z-index: 50;
+  transform: rotate(180deg);
 }
 
-/* gnb */
-.gnb {
-  height: 80px;
+.gnb .bound {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
 }
 
-.gnb ul {
-  display: flex;
-  justify-content: right;
-}
-
-.gnb > ul > li {
-  position: relative;
-  float: left;
-  width: 160px;
-  height: 80px;
-  line-height: 80px;
-}
-
-.gnb .mainNav {
-  position: relative;
-  display: block;
-  height: 80px;
-  text-align: center;
-  color: #141414;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: default;
-}
-
-.gnb>ul>li:nth-child(1)>.subNav>li,
-.gnb>ul>li:nth-child(2)>.subNav>li,
-.gnb>ul>li:nth-child(3)>.mainNav,
-.gnb>ul>li:nth-child(4)>.mainNav {
-  cursor: pointer;
-}
-
-.gnb .mainNav:after {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: block;
-  width: 160px;
-  height: 13px;
-  border-bottom: 3px solid var(--color-orange);
-  box-sizing: border-box;
-  content: '';
-  transform: scaleX(0);
-  transition: 0.2s;
-}
-
-.gnb li:hover .mainNav,
-.gnb li:focus .mainNav {
-  color: var(--color-orange);
-}
-
-.gnb li:hover .mainNav:after {
-  transform: scaleX(1);
-}
-
-.gnb .mainNav.active {
-  color: var(--color-orange);
-}
-
-/* subNav */
-.gnb .subNav {
+.gnb>.ul>.bound {
   display: none;
+}
+
+.bg {
+  z-index: -100;
   position: absolute;
-  top: 80px;
-  left: 0;
-  z-index: 5002;
-  width: 100%;
-  height: 150px;
-  text-align: center;
-  line-height: 48px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 0 15px -2px rgba(127, 127, 127, 0.5);
+  background-color: white;
+  width: 100vw;
+  height: 100%;
 }
 
-.gnb .subNav li {
-  display: inherit;
-  width: 160px;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 500;
+@media screen and (max-width: 768px) {
+  .gnb>ul {
+    overflow-y: scroll;
+  }
+
+  .gnb>ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gnb .depth1:first-of-type {
+    margin-top: 60px;
+  }
+  
+  .gnb .depth1 {
+    height: auto;
+  }
+  
+  .gnb .depth1>.nav-txt,
+  .gnb .depth1>ul .depth2 {
+    height: 60px;
+    padding: 0 20px;
+  }
+
+  .gnb .depth1>.nav-txt {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .gnb .depth1>ul {
+    background-color: #f4f4f4;
+    max-height: 0vh;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+  }
+
+  .gnb .depth1.active>ul {
+    max-height: 100vh;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+  }
 }
 
-.gnb .subNav li:hover {
-  color: var(--color-orange);
+@media only screen and (min-width: 768.1px) {
+  header {
+    height: 80px;
+    font-size: 20px;
+  }
+
+  .header-wrap {
+    max-width: 1280px;
+    height: 100%;
+  }
+
+  .logo {
+    cursor: pointer;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  .gnb {
+    height: 100%;
+  }
+
+  .gnb .burger-wrap {
+    display: none;
+  }
+
+  .gnb ul {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .gnb>ul {
+    position: initial;
+    width: fit-content;
+    height: 100%;
+    background-color: transparent;
+  }
+
+  .gnb .menu-top {
+    display: none;
+  }
+  
+  .gnb .depth1,
+  .gnb .depth2 {
+    width: fit-content;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .gnb .depth2 {
+    font-size: 18px;
+  }
+  
+  .gnb .depth1>.nav-txt,
+  .gnb .depth2>.nav-txt {
+    transition: all 0.2s ease-out;
+  }
+
+  .gnb .depth1:hover>.nav-txt,
+  .gnb .depth2:hover>.nav-txt {
+    transform: scale(1.05);
+    color: white;
+    text-shadow: 0 0 3px black, 0 1px 1px rgba(0, 0, 0, 0.1), 1px 0 1px rgba(0, 0, 0, 0.1), 0 -1px 1px rgba(0, 0, 0, 0.1), -1px 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .gnb .depth1 .nav-txt .fa-caret-down {
+    display: none;
+  }
+
+  .gnb .depth1>ul {
+    z-index: -200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 15px -2px  rgba(127, 127, 127, 0);
+    transition: top 0.5s ease-out, box-shadow 0.5s ease-out;
+  }
+
+  .gnb .depth1.active>ul {
+    top: 80px;
+    /* border-bottom: 1px solid #ddd; */
+    box-shadow: 0 0 15px -2px rgba(127, 127, 127, 0.5);
+  }
+
+  .gnb .depth1>ul .depth2 {
+    z-index: inherit;
+    height: 100%;
+  }
+
+  .gnb .bound {
+    display: block;
+    width: 1px;
+    height: 25px;
+    background-color: #ccc;
+  }
+
+  .gnb .bound:last-of-type {
+    display: none;
+  }
 }
-
-.subBg {
-  display: none;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  z-index: 5001;
-  width: 100%;
-  height: 150px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  box-sizing: border-box;
-  background-color: #fafafa;
-}
-
-/* topMenu */
-.gnb .topMenu {
-  width: initial;
-  margin-left: 25px;
-  cursor: pointer;
-  word-break: keep-all;
-  white-space: nowrap;
-}
-
-.gnb .topMenu:hover {
-  color: var(--color-orange);
-}
-
-.gnb .login,
-.gnb .join {
-  font-size: var(--font-regular);
-}
-
-.gnb .icon {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  transform: translateY(80%);
-}
-
-.gnb .icon img {
-  position: absolute;
-}
-
-/* header scroll */
-header.active {
-  width: 100%;
-  height: 80px;
-  background-color: rgba(0,0,0,0.4);
-  box-sizing: border-box;
-}
-
-header.active .hTop {
-  top: -40px;
-}
-
-header.active .hBottom {
-  top: -40px;
-  height: 80px;
-  transition: 0.3s;
-}
-
-header.active .hBottom h1 {
-  height: 80px;
-  transition: 0.3s;
-}
-
-header.active .gnb {
-  height: 80px;
-  transition: 0.3s;
-}
-
-header.active .gnb > ul > li {
-  height: 80px;
-  line-height: 80px;
-  transition: 0.3s;
-}
-
-header.active .subBg {
-  top: 80px;
-}
-
-
 </style>

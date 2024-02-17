@@ -1,5 +1,5 @@
 const db = {
-    database: "peteran",
+    database: "sook",
     connectionLimit: 10,
     host: "127.0.0.1",
     user: "root",

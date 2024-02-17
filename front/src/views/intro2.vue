@@ -1,251 +1,186 @@
 <template>
-  <main>
-    <div class="title">
-      <h1>피부과 클리닉 <span class="sub_color">안내</span></h1>
-    </div>
-    <div class="content">
-      <div class="img">
-        <img src="http://www.chungdamah.co.kr/theme/hp001/img/pbg.jpg">
+  <main class="wrap">
+    <div class="inner-wrap">
+      <h1 class="title">시설 소개</h1>
+      <h2 class="sub-title"><span class="bar"></span>건물 소개</h2>
+      <div class="row">
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/domi.png'>
+          </div>
+        </div>
+      </div>
+      <h2 class="sub-title"><span class="bar"></span>객실 소개</h2>
+      <div class="row">
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/room.png'>
+          </div>
+        </div>
+        <div class="descr">
+          <p class="color-main">남자동 / 여자동 / 학생실(2인실)</p>
+          <p>연면적: 13,283.93 ㎡</p>
+          <p>규모: 지상 8층</p>
+          <p>편의시설: 편의점, 세탁실, 휴게실, 식당, 체력 단련실</p>
+        </div>
+      </div>
+      <h2 class="sub-title"><span class="bar"></span>편의시설 소개</h2>
+      <div class="row">
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/cu.png'>
+          </div>
+        </div>
+        <div class="descr">
+          <p class="color-main">편의점</p>
+          <p>위치: 1층</p>
+          <p>이용시간: 07:00 ~ 24:00</p>
+          <p>전화번호: 02-243-6234</p>
+        </div>
       </div>
       <div class="row">
-        <div class="sub_tit">
-          <div class="num">01</div>
-          <div class="sub_tit_txt">피부진료 안내</div>
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/wash.png'>
+          </div>
         </div>
-        <div class="sub_color">
-          펫테랑동물병원은 특화진료과목 이외에도 각 진료과목별 전문 클리닉을 운영하고 있습니다.
+        <div class="descr">
+          <p class="color-main">세탁실</p>
+          <p>위치: 남, 여 각 1층</p>
+          <p>이용시간: 05:00 ~ 24:00</p>
+          <p>시설: 세탁기, 건조기, 다리미</p>
+          <p>전화번호: 02-521-5261</p>
         </div>
-        <table class="ta_01" cellpadding="0" cellspacing="0">
-          <tbody>
-            <tr>
-              <td class="left top1">귀질환</td>
-              <td class="right top1 r01">
-                귀에 발생하는 질병들은 보호자들의 세심한 보호가 있다면 예방하거나 발병을 줄일수 있음을 인지하고 병원내원시 마다 정기적으로 검진하여야 합니다. 귀속에서 불괘한 냄새가 나거나, 고개를 좌우로 흔들거나, 귀를 만지면 아파하는 것들은 귓병을 의심해 볼수 있는 증상들입니다. 귀의 해부학적 구조에 의해서 외이도염, 중이염, 내이염으로 구분을 합니다.
-              </td>
-            </tr>
-            <tr>
-              <td class="left">피부질환</td>
-              <td class="right r01">
-                반려동물의 피부는 사람과 다르게 피모(털)로서 피부를 덥고 있습니다. 이러한 털과 피부는 여려가지 환경, 영양, 호르몬등에 의해 영향을 받게됩니다. 또한 이러한 피모나 피부에 영향을 주는 질환은 광범위합니다.
-              </td>
-            </tr>
-          </tbody>
-        </table> 
       </div>
       <div class="row">
-        <div class="sub_tit">
-          <div class="num">02</div>
-          <div class="sub_tit_txt">주요 피부질환 종류</div>
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/rest.png'>
+          </div>
         </div>
-        <div class="grid_wrap">
-          <ul>
-            <li>
-              <span>01</span>
-              <p>
-                세균성<br>피부질환
-              </p>
-            </li>
-            <li>
-              <span>02</span>
-              <p>
-                곰팡이성<br>피부질환
-              </p>
-            </li>
-            <li>
-              <span>03</span>
-              <p>
-                기생충성<br>피부질환
-              </p>
-            </li>
-            <li>
-              <span>04</span>
-              <p>
-                내분비성<br>피부질환
-              </p>
-            </li>
-            <li>
-              <span>05</span>
-              <p>
-                면역매계성<br>피부질환
-              </p>
-            </li>
-            <li>
-              <span>06</span>
-              <p>
-                종양<br>&nbsp;
-              </p>
-            </li>
-            <li>
-              <span>07</span>
-              <p>
-                신생물<br>&nbsp;
-              </p>
-            </li>
-            <li>
-              <span>08</span>
-              <p>
-                음식알러지<br>&nbsp;
-              </p>
-            </li>
-            <li>
-              <span>09</span>
-              <p>
-                아토피<br>&nbsp;
-              </p>
-            </li>
-            <li>
-              <span>10</span>
-              <p>
-                접촉성<br>피부염
-              </p>
-            </li>
-          </ul>
+        <div class="descr">
+          <p class="color-main">휴게실</p>
+          <p>위치: 남, 여 각 2~8층</p>
+          <p>이용시간: 05:00 ~ 24:00</p>
+          <p>시설: TV, 정수기, 탁자, 의자, 청소기</p>
+          <p>전화번호: 02-510-3359</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/eat.png'>
+          </div>
+        </div>
+        <div class="descr">
+          <p class="color-main">식당</p>
+          <p>위치: 1층</p>
+          <p>이용시간: 07:30 ~ 09:00 조식</p>
+          <p>12:00 ~ 13:30 중식</p>
+          <p>17:30 ~ 19:00 석식</p>
+          <p>전화번호: 02-510-2421</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="img-frame grid-box">
+          <div class="img">
+            <img src='../assets/exercise.png'>
+          </div>
+        </div>
+        <div class="descr">
+          <p class="color-main">체력단련실</p>
+          <p>위치: 1층</p>
+          <p>이용시간: 05:00 ~ 24:00</p>
+          <p>시설: TV, 런닝머신 등 헬스기구</p>
+          <p>전화번호: 02-510-1235</p>
         </div>
       </div>
     </div>
   </main>
 </template>
 
+<style src="../assets/css/global.css" scoped></style>
 <style scoped>
-@import "../assets/css/global.css";
-
-.title {
-  text-align: center;
+.inner-wrap {
+  gap: 40px;
+}
+.sub-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
 }
 
-.title h1,
-.title h1 .sub_color {
-  font-weight: 700;
-}
-
-.content {
-  margin: 0 auto;
-  width: 800px;
+.bar {
+  width: 4px;
+  height: 0.8em;
+  border-radius: 2px;
+  background-color: var(--color-main);
 }
 
 .row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 80px;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 50px;
+  font-size: 16px;
 }
 
-.left {
-  width: 47%;
+.row:nth-of-type(odd) {
+  flex-direction: row;
 }
 
-.sub_tit {
-  position: relative;
-  margin-bottom: 20px;
+.row:nth-of-type(even) {
+  flex-direction: row-reverse;
+  text-align: right;
 }
 
-.num {
-  font-size: 40px;
-  color: #eaeaea;
-  font-weight: 700;
+.descr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  word-break: keep-all;
 }
 
-.sub_tit_txt {
-  position: absolute;
-  left: 40px;
-  bottom: 5px;
-  font-size: 20px;
+.row:nth-of-type(even) .descr {
+  align-items: end;
+}
+
+.color-main {
+  color: var(--color-main);
+  font-size: 1.1em;
   font-weight: 600;
 }
 
-.right {
-  width: 41%;
+.img-frame {
+  width: fit-content;
+  max-width: 100%;
+  min-width: 300px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.img {
-  margin-bottom: 80px;
-}
-
-.img img {
+.img-frame .img {
   width: 100%;
-  height: 450px;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+.img-frame img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-}
-
-.sub_color {
-  color: var(--color-orange);
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-
-.ta_01 .top1 {
-  border-top: 2px solid var(--color-orange);
-}
-.ta_01 .left {
-  width: 30%;
-  text-align: center;
-  font-size: 25px;
-  font-weight: 900;
-  padding: 2%;
-  background: #fafafa;
-  border-left: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
-  color: var(--color-dark);
-  word-break: keep-all;
-}
-
-.ta_01 .r01 {
-  border-right: 1px solid #CCC;
-}
-.ta_01 .right {
-  width: 70%;
-  font-size: 17px;
-  line-height: 35px;
-  padding: 3%;
-  border-left: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
-  word-break: keep-all;
-}
-
-.grid_wrap {
-  position: relative;
-  width: 100%;
-}
-
-.grid_wrap>ul {
-  margin: 0;
-  padding: 0;
-}
-
-.grid_wrap ul li {
-  display: inline-block;
-  width: 18%;
-  margin-right: 2%;
-  margin-bottom: 2%;
-  border: solid 5px var(--color-orange);
-  padding-top: 20px;
-  height: 157px;
-  transition: all .2s ease-out;
-}
-
-.grid_wrap ul li span {
-  font-size: 20px;
-  color: var(--color-orange);
-  font-style: italic;
-  font-weight: bold;
-  position: relative;
-  padding-left: 28px;
-}
-
-.grid_wrap ul li span::before {
-  content: '';
-  position: absolute;
-  left: 0px;
-  top: 14px;
-  width: 30px;
-  height: 1px;
-  background: var(--color-orange);
-}
-
-.grid_wrap ul li p {
-  font-size: 16px;
-  padding-top: 20px;
-  text-align: center;
-  margin: 0;
 }
 </style>

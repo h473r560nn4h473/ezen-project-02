@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
-const sql = require('../sql.js');
-const bcrypt = require('bcrypt');  
-const fs = require('fs');
+const sql = require('../sql.js'); 
 
-const multer = require('multer');
-const path = require('path');
+
 
 // 채팅방별 알람 가져오기
 router.get('/chat_check_alram/:user_no/:chat_room_no', function (request, response, next) {
@@ -167,7 +164,7 @@ router.post('/outChatRoom', function(request, response) {
 })
 
 // 알람 지우기
-router.post('/chat_delete_alram', function(request, response) {
+router.post('/chat_delete_alarm', function(request, response) {
   const user_no = request.body.user_no;
   const chat_room_num = request.body.chat_room_num;
 
@@ -233,6 +230,17 @@ router.get('/getChatAlram/:user_no', function(request, response) {
   })
 })
 
+// 유저 정보
+router.get('/userinfo/:user_no', function (request, response, next) {
+    const user_no = request.params.user_no;
 
+    db.query(sql.get_user_info, [user_no], function (error, results, fields) {
+        if(error) {
+            console.error(error);
+            return response.status(500).json({error:'회원에러'});
+        }
+        response.json(results);
+    });
+});
 
 module.exports = router;

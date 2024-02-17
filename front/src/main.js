@@ -1,332 +1,265 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import mixins from "./mixmin";
-import { createRouter, createWebHistory } from "vue-router";
-import store from "./store";
-import VueSweetalert2 from "vue-sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import store from './store'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
-//레이아웃
-import defaultLayout from "./layouts/defaultLayout.vue";
-import adminLayout from "./layouts/adminLayout.vue";
-import mypageLayout from "./layouts/mypageLayout.vue";
-import pageLayout from "./layouts/pageLayout.vue";
-import docpageLayout from "./layouts/docpageLayout.vue";
-import subjectLayout from "./layouts/subjectLayout.vue";
+import defaultLayout from './layouts/defaultLayout.vue'
+import boardLayout from './layouts/boardLayout.vue'
+import mypageLayout from './layouts/mypageLayout.vue'
+import adminLayout from './layouts/adminLayout.vue'
 
-import findPage from "./views/find.vue";
-import JoinPage1 from "./views/join1.vue";
-import JoinPage2 from "./views/join2.vue";
-import JoinPage3 from "./views/join3.vue";
-import LoginPage from "./views/login.vue";
-import PetUpload from "./views/petupload.vue";
-import ResPage from "./views/calendar.vue";
-import ReviewPage from "./views/review.vue";
-import ReviewDetailPage from "./views/reviewdetail.vue";
-import mainPage from "./views/main.vue";
-import DocSelPage from "./views/docSelect.vue";
-import qnaMainPage from "./views/qnamain.vue";
-import qnaWritePage from "./views/qnawrite.vue";
-import qnaDetailPage from "./views/qnaDetail.vue";
-import dochistory from "./views/docHistory.vue";
-import goodsList from "./views/goodslist.vue";
-import introPage1 from "./views/intro1.vue";
-import introPage2 from "./views/intro2.vue";
-import introPage3 from "./views/intro3.vue";
-import introPage4 from "./views/intro4.vue";
-import greetings from "./views/greetings.vue";
-import vetHistory from "./views/vetHistory.vue";
-
-// 관리자 페이지
-import UserInfo from "./admin/userInfo.vue";
-import ReviewList from "./admin/review.vue";
-import Qna from "./admin/qna.vue";
-import ReservationList from "./admin/reservation.vue";
-import GoodsMain from "./admin/goods.vue";
-import GoodsWrite from "./admin/goodswrite.vue";
-import GoodsModify from "./admin/goodsmodify.vue";
-
-//마이페이지
-import MypagePage from "./mypage/mypage.vue";
-import MypageUpdate from "./mypage/mypageupdate.vue";
-import PetUpdate from "./mypage/petupdate.vue";
-import MyReview from "./mypage/myReview.vue";
-import MyReviewContent from "./mypage/myReviewContent.vue";
-import MyReservation from "./mypage/myReservation.vue";
-import MyQna from "./mypage/myQna.vue";
-import MyQnaDetail from "./mypage/myQnaDetail.vue";
-import PassPage from "./mypage/pass.vue";
-
-//의료진 페이지
-import DocPage from "./docpage/docpage.vue";
-import DocpageUpdate from "./docpage/docupdate.vue";
-import DocQna from "./docpage/docqna.vue";
-import DocReview from "./docpage/docreview.vue";
-import DocReservation from "./docpage/docreservation.vue";
-import DocReservationDetail from "./docpage/myReservationContent.vue";
-import DocReviewDetail from "./docpage/docreviewdetail.vue";
-import DocQnaDetail from "./docpage/docqnadetail.vue";
-import DocReviewWrite from "./docpage/reviewWrite.vue";
-
-import myChat from "./mypage/mychat.vue";
+import mainPage from './views/main.vue'
+import resPage from './views/reservation.vue'
+import join from './views/join.vue'
+import find from './views/find.vue'
+import foodsPage from './views/foods.vue'
+import scoreDetail from './mypage/scoreDetail.vue'
 import chatroom from "./views/chatroom.vue";
+import map from "./components/map.vue"
+import joinInfo from './views/joinInfo.vue'
+import scoreStandard from './views/scorestandard.vue'
+import intro from './views/intro.vue'
+import intro2 from './views/intro2.vue'
+
+
+import boardWrite from './board/boardWrite.vue'
+import freePage from './board/freeMain.vue'
+import freeDetail from './board/freeDetail.vue'
+import freeModify from './board/freeModify.vue'
+import lostPage from './board/lostMain.vue'
+import lostDetailPage from './board/lostDetail.vue'
+import lostModifyPage from './board/lostModify.vue'
+import noticePage from './board/noticeMain.vue'
+import noticeDetail from './board/noticeDetail.vue'
+import reportPage from './board/reportMain.vue'
+import reportDetail from './board/reportDetail.vue'
+import reportModify from './board/reportModify.vue'
+import anonPage from './board/anonMain.vue'
+import anonDetail from './board/anonDetail.vue'
+import anonModify from './board/anonModify.vue'
+
+import userUpdate from './mypage/userupdate.vue'
+import myBoard from './mypage/myBoards.vue'
+import chat from "./mypage/chat.vue";
+import myPage from "./mypage/mypage.vue"
+import myResList from './mypage/myResList.vue'
+import pass from './mypage/pass.vue'
+
+import chartPage from './admin/chart.vue'
+import adminUserList from "./admin/userlist.vue";
+import adminAnonList from "./admin/anonboardlist.vue";
+import adminFreeList from "./admin/freeboardlist.vue";
+import adminLostList from "./admin/lostboardlist.vue";
+import adminNoticeList from "./admin/noticeboardlist.vue";
+import adminReportList from "./admin/reportboardlist.vue";
 
 const routes = [
   {
-    path: "/page",
-    name: "pageLayout",
-    component: pageLayout,
-    children: [
-      {
-        path: "/docHistory",
-        component: dochistory,
-      },
-      {
-        path: "/find",
-        component: findPage,
-      },
-      {
-        path: "/join1",
-        component: JoinPage1,
-      },
-      {
-        path: "/join2",
-        component: JoinPage2,
-      },
-      {
-        path: "/join3",
-        component: JoinPage3,
-      },
-      {
-        path: "/login",
-        component: LoginPage,
-      },
-      {
-        path: "/petupload",
-        component: PetUpload,
-      },
-      {
-        path: "/res",
-        component: ResPage,
-      },
-      {
-        path: "/docSelect",
-        component: DocSelPage,
-      },
-      {
-        path: "/qnaMain",
-        component: qnaMainPage,
-      },
-      {
-        path: "/qnaWrite",
-        component: qnaWritePage,
-      },
-      {
-        path: "/qnaMain/qnaDetail",
-        component: qnaDetailPage,
-      },
-      {
-        path: "/review",
-        component: ReviewPage,
-      },
-      {
-        path: "/review/reviewDetail",
-        component: ReviewDetailPage,
-      },
-      {
-        path: "/goodsList",
-        component: goodsList,
-      },
-      {
-        path: "/greetings",
-        component: greetings,
-      },
-      {
-        path: "/vetHistory",
-        component: vetHistory,
-      },
-    ],
-  },
-  {
-    path: "/",
-    name: "defaultLayout",
+    path: '/',
+    name: 'defaultLayout',
     component: defaultLayout,
     children: [
       {
-        path: "",
+        path: '',
         component: mainPage,
       },
       {
-        path: '/chatroom/:id',
-        name: 'chatroom',
-        component: chatroom
+        path: 'res',
+        component: resPage,
       },
-    ],
+      {
+        path: 'join',
+        component: join,
+      },
+      {
+        path: 'find',
+        component: find,
+      },
+      {
+        path: 'map',
+        component: map,
+      },
+      {
+        path: 'joinInfo',
+        component: joinInfo,
+      },
+      {
+        path: 'scoreStandard',
+        component: scoreStandard,
+      },
+      {
+        path: 'intro',
+        component: intro,
+      },
+      {
+        path: 'intro2',
+        component: intro2,
+      },
+      {
+        path: 'foods',
+        component: foodsPage,
+      }
+    ]
   },
   {
-    path: "/subject/",
-    name: "subjectLayout",
-    component: subjectLayout,
-    children: [
-      {
-        path: "intro1",
-        component: introPage1,
-      },
-      {
-        path: "intro2",
-        component: introPage2,
-      },
-      {
-        path: "intro3",
-        component: introPage3,
-      },
-      {
-        path: "intro4",
-        component: introPage4,
-      },
-    ],
-  },
-  {
-    path: "/mypage/",
-    name: "mypageLayout",
+    path: '/mypage/',
+    name: 'mypageLayout',
     component: mypageLayout,
     children: [
       {
-        path: "",
-        component: MypagePage,
+        path: '',
+        component: myPage
       },
       {
-        path: "mypageupdate",
-        component: MypageUpdate,
+        path: 'userupdate',
+        component: userUpdate
       },
       {
-        path: "petupdate",
-        component: PetUpdate,
+        path: 'boards',
+        component: myBoard
       },
       {
-        path: "myreservation",
-        component: MyReservation,
+        path: 'chat',
+        component: chat,
       },
       {
-        path: "myreview",
-        component: MyReview,
+        path: 'scoreDetail',
+        component: scoreDetail,
       },
       {
-        path: "myreview/reviewcontent",
-        component: MyReviewContent,
+        path: 'resList',
+        component: myResList,
       },
       {
-        path: "myqna",
-        component: MyQna,
-      },
-      {
-        path: "myqna/myqnadetail",
-        component: MyQnaDetail,
-      },
-      {
-        path: "pass",
-        component: PassPage,
-      },
-      {
-        path: "mychat",
-        component: myChat,
-      },
-    ],
+        path: 'pass',
+        component: pass,
+      }
+    ]
   },
   {
-    path: "/docpage/",
-    name: "docpageLayout",
-    component: docpageLayout,
-    children: [
+    path: '/board/',
+    name: 'boardLayout',
+    component: boardLayout,
+    children : [
       {
-        path: "",
-        component: DocPage,
+        path: 'notice',
+        component: noticePage,
       },
       {
-        path: "docupdate",
-        component: DocpageUpdate,
+        path: 'notice/noticeDetail',
+        component: noticeDetail,
       },
       {
-        path: "docreservation",
-        component: DocReservation,
+        path: 'free',
+        component: freePage,
       },
       {
-        path: "docreservation/resdetail",
-        component: DocReservationDetail,
+        path: 'free/freeDetail',
+        component: freeDetail,
       },
       {
-        path: "docreview",
-        component: DocReview,
+        path: 'free/freeModify',
+        component: freeModify,
       },
       {
-        path: "docreview/write",
-        component: DocReviewWrite,
+        path: 'anon',
+        component: anonPage,
       },
       {
-        path: "docreview/reviewdetail",
-        component: DocReviewDetail,
+        path: 'anon/anonDetail',
+        component: anonDetail,
       },
       {
-        path: "docqna",
-        component: DocQna,
+        path: 'anon/anonModify',
+        component: anonModify,
       },
       {
-        path: "docqna/qnadetail",
-        component: DocQnaDetail,
+        path: 'report',
+        component: reportPage,
       },
-    ],
+      {
+        path: 'report/reportDetail',
+        component: reportDetail,
+      },
+      {
+        path: 'report/reportModify',
+        component: reportModify,
+      },
+      {
+        path: 'lost',
+        component: lostPage,
+      },
+      {
+        path: 'lost/lostDetail',
+        component: lostDetailPage,
+      },
+      {
+        path: 'lost/lostModify',
+        component: lostModifyPage,
+      },
+      {
+        path: 'boardWrite',
+        component: boardWrite,
+      },
+    ]
   },
   {
-    path: "/admin/",
-    name: "adminLayout",
+    path: '/admin/',
+    name: 'adminLayout',
     component: adminLayout,
-    children: [
+    children : [
       {
-        path: "userlist",
-        component: UserInfo,
+        path: 'chart',
+        component: chartPage,
       },
       {
-        path: "reviewlist",
-        component: ReviewList,
+        path: 'userlist',
+        component: adminUserList,
       },
       {
-        path: "qnalist",
-        component: Qna,
+        path: 'boardlist/anon',
+        component: adminAnonList,
       },
       {
-        path: "reservationlist",
-        component: ReservationList,
+        path: 'boardlist/free',
+        component: adminFreeList,
       },
       {
-        path: "goodslist",
-        component: GoodsMain,
+        path: 'boardlist/lost',
+        component: adminLostList,
       },
       {
-        path: "goodswrite",
-        component: GoodsWrite,
+        path: 'boardlist/notice',
+        component: adminNoticeList,
       },
       {
-        path: "goodslist/goodsmodify/",
-        component: GoodsModify,
-      },
-    ],
+        path: 'boardlist/report',
+        component: adminReportList,
+      }
+    ]
   },
-];
-
-// 카카오 발급키
-window.Kakao.init("eca40114c12912aeb1322962de390162");
+  {
+    path: '/chat',
+    component: chat,
+  },
+  {
+    path: '/chatroom/:id',
+    component: chatroom,
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior() {
-    return { top: 0 };
-  },
+    return { top: 0 }
+  }
 });
 
-const app = createApp(App);
+const app = createApp(App)
 app.use(router);
-app.mixin(mixins);
 app.use(store);
 app.use(VueSweetalert2);
-app.mount("#app");
+app.mount('#app');

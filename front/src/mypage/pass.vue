@@ -1,39 +1,37 @@
 <template>
-  <main class="form">
-    <div class="login-form wrap">
-      <div class="logo">
-        <img src="../assets/logo-icon-color.svg">
+  <main>
+    <div class="title">
+      <h1>비밀번호 변경</h1>
+    </div>
+    <div class="input-wrap">
+      <div class="input-row">
+        <input type="password" id="user_pw" placeholder="기존 비밀번호" v-model="user_pw" />
+        <div class="eye" @click="oneyes('user_pw')"><i class="fa-solid fa-eye"></i></div>
       </div>
-      <div class="input_wrap">
-        <div class="input_row">
-          <input type="password" id="user_pw" placeholder="기존 비밀번호" v-model="user_pw" />
-          <div class="eye" @click="oneyes('user_pw')"><i class="fa-solid fa-eye"></i></div>
-        </div>
-        <div class="warning_row">
-          <div class="warning" :class="{ active: user_pw !== '' && !isPasswordValid(user_pw)}">비밀번호가 일치하지 않습니다
-          </div>
-        </div>
-        <div class="input_row">
-          <input type="password" id="user_npw" placeholder="새 비밀번호" v-model="user_npw" />
-          <div class="eye" @click="oneyes('user_npw')"><i class="fa-solid fa-eye"></i></div>
-        </div>
-        <div class="warning_row">
-          <div class="warning" :class="{ active: user_npw !== '' && !isPasswordValid(user_npw) }">영문, 숫자, 특수문자 조합 8자 이상
-          </div>
-        </div>
-        <div class="input_row">
-          <input type="password" id="user_npw_ck" placeholder="비밀번호 확인" v-model="user_npw_ck" />
-          <div class="eye" @click="oneyes('user_npw_ck')"><i class="fa-solid fa-eye"></i></div>
-        </div>
-        <div class="warning_row">
-          <div class="warning" :class="{ active: user_npw_ck !== '' && !isPasswordValid(user_npw_ck) }">영문, 숫자, 특수문자 조합 8자
-            이상</div>
+      <div class="warning-row">
+        <div class="warning" :class="{ active: user_pw !== '' && !isPasswordValid(user_pw)}">비밀번호가 일치하지 않습니다
         </div>
       </div>
-      <div class="btn_row">
-        <button type="submit" class="btn_small" :disabled="!isFormValid" @click="onSubmitForm">비밀번호 변경</button>
-        <button type="button" class="btn_small" @click="this.$router.go(-1)">취소</button>
+      <div class="input-row">
+        <input type="password" id="user_npw" placeholder="새 비밀번호" v-model="user_npw" />
+        <div class="eye" @click="oneyes('user_npw')"><i class="fa-solid fa-eye"></i></div>
       </div>
+      <div class="warning-row">
+        <div class="warning" :class="{ active: user_npw !== '' && !isPasswordValid(user_npw) }">영문, 숫자, 특수문자 조합 8자 이상
+        </div>
+      </div>
+      <div class="input-row">
+        <input type="password" id="user_npw_ck" placeholder="비밀번호 확인" v-model="user_npw_ck" />
+        <div class="eye" @click="oneyes('user_npw_ck')"><i class="fa-solid fa-eye"></i></div>
+      </div>
+      <div class="warning-row">
+        <div class="warning" :class="{ active: user_npw_ck !== '' && !isPasswordValid(user_npw_ck) }">영문, 숫자, 특수문자 조합 8자
+          이상</div>
+      </div>
+    </div>
+    <div class="btn-area">
+      <button type="submit" class="btn-small" :disabled="!isFormValid" @click="onSubmitForm">비밀번호 변경</button>
+      <button type="button" class="btn-small" @click="this.$router.go(-1)">취소</button>
     </div>
   </main>
 </template>
@@ -70,7 +68,7 @@ export default {
   mounted() {
     if (this.user.user_no === "") {
       this.$swal("로그인해주세요");
-      this.$router.push({ path: "/login" });
+      this.$router.push({ path: "/" });
     } else {
       this.user_no = this.user.user_no;
 
@@ -165,56 +163,57 @@ export default {
   }
 }
 </script>
-<style src="../assets/css/profileInput.css" scoped></style>
+
+<style src="../assets/css/global.css" scoped />
 <style scoped>
-@import "../assets/css/global.css";
-
-.wrap {
-  width: 400px;
-  margin: 50px auto;
-  border: solid 1px var(--color-lightgray);
-  background: linear-gradient(140deg, var(--color-white) 30%, #fff2e6 100%);
+.title {
+  margin-bottom: 40px;
 }
 
-.logo {
-  width: 110px;
-  margin: 40px auto;
+.input-wrap {
+  margin: 0 auto 20px;
+  max-width: 400px;
 }
 
-.logo img {
+.input-row {
   width: 100%;
-}
-
-.input_wrap {
-  margin-bottom: 20px;
-}
-
-.input_row {
-  position: relative;
-}
-
-.input_row input {
-  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .eye {
-  color: var(--color-gray);
-  position: absolute;
-  right: 4px;
-  top: 4px;
-  background: var(--color-white);
-  height: 42px;
-  width: 42px;
-  border-radius: 0 21px 21px 0;
+  height: 100%;
+  padding: 0 0.5em;
+  color: #ccc;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
+  cursor: pointer;
 }
 
-.btn_row {
+.eye:hover {
+  color: #999;
+}
+
+.warning-row {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3em;
+}
+
+.warning {
+  visibility: hidden;
+  color: var(--color-red);
+}
+
+.warning.active {
+  visibility: visible;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
 }
 </style>

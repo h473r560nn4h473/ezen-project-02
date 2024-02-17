@@ -31,21 +31,27 @@ cio.on('connection', function(socket) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authRouter = require('./routes/auth');
-const resRouter = require('./routes/reservation');
-const reviewRouter = require('./routes/review');
-const qnaRouter = require('./routes/qna');
-const mypageRouter = require('./routes/mypage');
-const goodsRouter = require('./routes/goods');
-const chatRouter = require('./routes/chat');
 
+const fodRouter = require('./routes/food');
+const resRouter = require('./routes/reservation');
+const authRouter = require('./routes/auth');
+const boardRouter = require('./routes/board');
+const adminRouter = require('./routes/admin');
+const mypageRouter = require('./routes/mypage');
+const chatRouter = require('./routes/chat');
+const lostRouter = require('./routes/lost');
+const anonRouter = require('./routes/anon');
+
+app.use('/mypage', mypageRouter);
+app.use('/board', boardRouter);
 app.use('/auth', authRouter);
 app.use('/reservation', resRouter);
-app.use('/review', reviewRouter);
-app.use('/qna', qnaRouter);
-app.use('/mypage', mypageRouter);
-app.use('/goods', goodsRouter);
+app.use('/food', fodRouter);
+app.use('/admin', adminRouter);
 app.use('/chat', chatRouter);
+app.use('/lost', lostRouter);
+app.use('/anon', anonRouter);
+
 
 app.listen(3000, function() {
     console.log('Server Running at http://localhost:3000');

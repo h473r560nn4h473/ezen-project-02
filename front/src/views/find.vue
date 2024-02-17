@@ -1,46 +1,42 @@
 <template>
-  <main class="content_wrap">
-    <div class="title">
-      <h1>아이디/비밀번호 찾기</h1>
-    </div>
-    <div class="bg_shadow">
-      <div class="wrap">
-        <div class="tab_list">
-          <div role="tab" id="tab1" class="tab" @click="handleTabClick('btn_id')" :class="{ active: isTabActive('btn_id') }">
-            <button type="button" class="btn_id">아이디 찾기</button>
-          </div>
-          <div role="tab" id="tab2" class="tab" @click="handleTabClick('btn_pw')" :class="{ active: isTabActive('btn_pw') }">
-            <button type="button" class="btn_pw">비밀번호 찾기</button>
-          </div>
+  <main class="wrap">
+    <div class="inner-wrap">
+      <h1 class="title">아이디/비밀번호 찾기</h1>
+      <div class="grid-box">
+        <div class="tab-list">
+          <div role="tab" id="tab1" class="tab" @click="handleTabClick('btn_id')" :class="{ active: isTabActive('btn_id') }">아이디 찾기</div>
+          <div role="tab" id="tab2" class="tab" @click="handleTabClick('btn_pw')" :class="{ active: isTabActive('btn_pw') }">비밀번호 찾기</div>
         </div>
-        <div class="form_wrap">
-          <div class="form_id" v-show="isTabActive('btn_id')">
-            <div class="form_tit">전화번호</div>
-            <div class="input_row">
+        <div class="form-wrap">
+          <div class="form" v-show="isTabActive('btn_id')">
+            <div class="form-title">전화번호</div>
+            <div class="input-row">
               <input type="tel" @input="validatePhoneNumber" minlength="10" maxlength="11" placeholder="- 없이 숫자만 입력" v-model="user_ph" />
-              <button type="button" class="btn_send" @click="findID()">아이디 찾기</button>
             </div>
+            <button type="button" class="btn-small" @click="findID()">아이디 찾기</button>
             <div v-if="response_id_check" class="response">
-              <div class="id_notice">아이디는 <span class="user_info">{{ search_user_id }}</span>입니다. </div>
+              <div class="id-notice">아이디는 <span class="user-info">{{ search_user_id }}</span>입니다. </div>
             </div>
-            <div class="btn_wrap">
-              <button type="button" class="button" @click="goToLogin">로그인</button>
+            <div class="btn-area">
+              <button type="button" class="btn-login btn-big" @click="goToLogin">로그인</button>
             </div>
           </div>
-          <div class="form_pw" v-show="isTabActive('btn_pw')">
-            <div class="input_wrap">
-              <div class="form_tit">아이디</div>
+          <div class="form" v-show="isTabActive('btn_pw')">
+            <div class="form-title">아이디</div>
+            <div class="input-row">
               <input type="test" placeholder="아이디" @value="foundID()" v-model="user_id" />
-              <div class="form_tit">전화번호</div>
-              <input type="tel" minlength="11" maxlength="11" placeholder="- 없이 숫자만 입력" v-model="user_ph" />
-              <button type="button" class="btn_send" @click="findPW()">비밀번호 찾기</button>
             </div>
+            <div class="form-title">전화번호</div>
+            <div class="input-row">
+              <input type="tel" minlength="10" maxlength="11" placeholder="- 없이 숫자만 입력" v-model="user_ph" />
+            </div>
+            <button type="button" class="btn-small" @click="findPW()">비밀번호 찾기</button>
             <div v-if="response_pw_check" class="response">
-              <div class="id_notice">임시 비밀번호는 <span class="user_info">{{ user_pw }}</span>입니다.</div>
-              <div class="id_notice">로그인 후 꼭 변경해주세요.</div>
+              <div class="id-notice">임시 비밀번호는 <span class="user-info">{{ user_pw }}</span>입니다.</div>
+              <div class="id-notice">로그인 후 꼭 변경해주세요.</div>
             </div>
-            <div class="btn_wrap">
-              <button type="button" class="button" @click="goToLogin">로그인</button>
+            <div class="btn-area">
+              <button type="button" class="btn-login btn-big" @click="goToLogin">로그인</button>
             </div>
           </div>
         </div>
@@ -71,7 +67,7 @@ export default {
   },
   methods: {
     goToLogin() {
-      this.$router.push({ path: '/login' });
+      this.$router.push({ path: '/' });
     },
     handleTabClick(tab) {
       this.activeTab = tab; // 클릭한 탭 버튼으로 activeTab 값을 업데이트
@@ -147,132 +143,86 @@ export default {
   }
 }
 </script>
-<style src="../assets/css/profileInput.css" scoped></style>
+
+<style src="../assets/css/global.css" scoped />
 <style scoped>
-@import "../assets/css/global.css";
-
-.bg_shadow {
-  width: 550px;
-  margin: 0 auto;
-  background: #dbdbdb;
-  border-radius: 25px;
+main.wrap {
+  max-width: 600px;
 }
 
-.wrap {
+.grid-box {
   padding: 0;
-  width: 100%;
-  border: none;
-  background: linear-gradient(180deg, var(--color-white) 60%, #fff2e6 100%);
-  box-shadow: none;
 }
 
-.tab_list {
+.grid-box:hover {
+  transform: none;
+}
+
+.tab-list {
   display: flex;
-  background: transparent;
-  box-shadow: 0 -1px 1px 0 var(--color-gray) inset;
 }
 
 .tab {
-  flex-grow: 1;
+  height: 50px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  background-color: var(--color-white);
-  border-radius: 25px 25px 0 0;
-  margin-right: 10px;
   border-bottom: none;
+  position: relative;
+  transition: all 0.2s ease-out;
 }
 
-.tab:last-child {
-  margin-right: 0;
-  border-left: 1px solid var(--color-gray);
+.tab::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 15px);
+  transition: all 0.2s ease-out;
 }
 
 .tab:not(.active) {
-  box-shadow: 0 -5px 10px -3px var(--color-lightgray);
-  border: 1px solid var(--color-gray);
-  border-bottom: none;
+  color: #ccc;
+  cursor: pointer;
 }
 
-.tab:not(.active):hover {
-  border: 1px solid var(--color-orange);
-  border-bottom: none;
-  box-shadow: 0 -8px 10px -5px var(--color-lightorange);
-}
-
-.tab:not(.active):hover button {
-  color: var(--color-orange);
-}
-
-.tab button {
-  font-weight: 500;
-  background: none;
-}
-
+.tab:not(.active):hover ,
 .tab.active {
-  background-image: none;
-  cursor: initial;
-  border: 1px solid var(--color-orange);
-  border-bottom: none;
-  box-shadow: 0 -8px 10px -5px var(--color-lightorange);
-}
-
-.tab.active button {
-  color: var(--color-orange);
-}
-
-.tab button {
-  width: 100%;
-  height: 100%;
-  color: var(--color-gray);
-}
-
-.form_wrap {
-  border: 1px solid transparent;
-  border-top: none;
-  padding: 100px 50px;
-  border: 1px solid var(--color-gray);
-  border-top: none;
-  border-radius: 0 0 25px 25px;
-  box-shadow: 0 0 10px 5px var(--color-lightgray);
-}
-
-.form_id {
-  margin: 0 auto;
-}
-
-.form_tit {
-  margin-bottom: 20px;
-}
-
-.input_row,
-.input_wrap {
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
-.input_row input,
-.input_wrap input {
-  width: 280px;
-}
-
-.input_row button,
-.input_wrap button {
-  width: 140px;
-  height: 50px;
-  border: 1px solid var(--color-orange);
-  border-radius: 25px;
-  background: var(--color-white);
-  color: var(--color-orange);
+  color: inherit;
   font-weight: 500;
 }
 
-.input_row button:hover,
-.input_wrap button:hover {
-  background: var(--color-orange);
-  color: var(--color-white);
+.tab:not(.active):hover::after ,
+.tab.active::after {
+  background-color: var(--color-main);
+}
+
+.form-wrap {
+  padding: 70px 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.input-row input {
+  width: 100%;
+  padding: 0.5em 0;
+}
+
+.btn-small {
+  align-self: center;
 }
 
 .response {
@@ -280,36 +230,27 @@ export default {
   text-align: center;
 }
 
-.response .id_notice:not(:last-child) {
+.response .id-notice:not(:last-child) {
   margin-bottom: 20px;
 }
 
-.response .user_info {
-  color: var(--color-orange);
-  font-size: var(--font-medium);
+.response .user-info {
+  color: var(--color-main);
+  font-size: 1.2em;
+  font-weight: 500;
   margin: 0 7px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text; 
+  user-select: text;
 }
 
-.btn_wrap {
+.btn-area {
   display: flex;
   justify-content: center;
 }
 
-.input_wrap {
-  display: grid;
-  position: relative;
-}
-
-.input_wrap input {
-  margin-bottom: 30px;
-}
-
-.input_wrap input:last-of-type {
-  margin-bottom: 0;
-}
-
-.input_wrap .btn_send {
-  grid-column: 2 / 3;
-  grid-row: 1 / 5;
+.btn-login {
+  max-width: 200px;
 }
 </style>

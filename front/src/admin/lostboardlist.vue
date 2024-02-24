@@ -77,8 +77,8 @@
               <td><input type="checkbox" class="check" :value="item.LOST_NO" v-model="checkedPosts"></td>
               <td @click=movetocontent(item.LOST_NO)>{{ item.LOST_NO }}</td>
               <td>{{ item.USER_NM }}</td>
-              <td>{{ item.LOST_TITLE }}</td>
-              <td>{{ cutTheContent(item.LOST_CONTENT, 10) }}</td>
+              <td>{{ cutTheContent(item.LOST_TITLE, 10) }}</td>
+              <td>{{ cutTheContent(item.LOST_CONTENT, 40) }}</td>
               <td>{{ formatDateTime(item.LOST_DATE) }}</td>
               <td>{{ getLostCategoryText(item.LOST_CATEGORY)  }}</td>
             </tr>

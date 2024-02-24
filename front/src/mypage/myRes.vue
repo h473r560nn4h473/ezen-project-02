@@ -4,7 +4,7 @@
     <div class="btn-text" @click="MyResMain">전체 예약 보기 <i class="fa-solid fa-chevron-right"></i></div>
   </div>
   <div class="res-content-wrap">
-    <div class="sub-title">이용 중</div>
+    <div class="sub-title">이용 예정</div>
     <div class="grid-box" v-for="item in filteredItems1" :key="item.RES_NO">
       {{ item.STR_FLOOR }}층 {{ item.RES_STR_ROOM }}룸 좌석 {{ item.SEAT_NUMBER }}
     </div>

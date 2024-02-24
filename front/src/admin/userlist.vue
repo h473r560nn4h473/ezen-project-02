@@ -99,9 +99,9 @@
                     <thead>
                       <tr>
                         <th>유저 이름&nbsp;</th>
-                        <th>마지막 상점 / 벌점&nbsp;</th>
-                        <th>마지막 사유&nbsp;</th>
-                        <th>마지막 상세사유&nbsp;</th>
+                        <th>마지막으로 부여한 상점 / 벌점&nbsp;</th>
+                        <th>사유&nbsp;</th>
+                        <th>상세내역&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody>

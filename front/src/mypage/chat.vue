@@ -205,25 +205,46 @@ export default {
         console.error(error);
       }
     },
+    // formatDateTime(dateTime) {
+    //   const today = new Date();
+    //   const date = new Date(dateTime);
+    //   const options = {
+    //     year: "numeric",
+    //     month: "numeric",
+    //     day: "numeric",
+    //   };
+    //   const betweenTime = Math.floor((today.getTime() - date.getTime()) / 1000 / 60);
+    //   if (betweenTime < 1) return '방금 전';
+    //   if (betweenTime < 60) return `${betweenTime}분 전`;
+    //   const betweenTimeHour = Math.floor(betweenTime / 60);
+    //   const formattedDateTime = date.toLocaleDateString("ko-KR", options).replace(/\.$/, '');
+    //   if (betweenTimeHour < 24) {
+    //     return `${betweenTimeHour}시간 전`;
+    //   } else {
+    //     return formattedDateTime;
+    //   }
+    // },
     formatDateTime(dateTime) {
-      const today = new Date();
       const date = new Date(dateTime);
+      const now = new Date();
       const options = {
         year: "numeric",
-        month: "numeric",
+        month: "long",
         day: "numeric",
       };
-      const betweenTime = Math.floor((today.getTime() - date.getTime()) / 1000 / 60);
-      if (betweenTime < 1) return '방금 전';
-      if (betweenTime < 60) return `${betweenTime}분 전`;
-      const betweenTimeHour = Math.floor(betweenTime / 60);
-      const formattedDateTime = date.toLocaleDateString("ko-KR", options).replace(/\.$/, '');
-      if (betweenTimeHour < 24) {
-        return `${betweenTimeHour}시간 전`;
-      } else {
-        return formattedDateTime;
-      }
-    },
+      // 현재 시간을 기점으로 보낸 지 몇 초 안 됐다면 '0초 전' 이런 식으로 표시
+      if(now.getTime() - date.getTime() < 60000) return `방금 전`;
+      // 보낸 지 1분 안 됐다면 '0분 전' 이런 식으로 표시
+      if(now.getTime() - date.getTime() < 3600000) return `${Math.floor((now.getTime() - date.getTime()) / 60000)}분 전`;
+      // 보낸 지 1시간 안 됐다면 '0시간 전' 이런 식으로 표시
+      if(now.getTime() - date.getTime() < 86400000) return `${Math.floor((now.getTime() - date.getTime()) / 3600000)}시간 전`;
+      // 보낸 지 1일 안 됐다면 '0일 전' 이런 식으로 표시
+      if(now.getTime() - date.getTime() < 2592000000) return `${Math.floor((now.getTime() - date.getTime()) / 86400000)}일 전`;
+      // 보낸 지 1달 안 됐다면 날짜로 표시
+
+      const formattedDateTime = date.toLocaleDateString("ko-KR", options);
+      return formattedDateTime;
+    }
   }
 }
 </script>

@@ -86,6 +86,7 @@
               <th>내용</th>
               <th>작성일</th>
               <th>범주</th>
+              <th>확인</th>
             </tr>
           </thead>
           <tbody>
@@ -93,10 +94,11 @@
               <td><input type="checkbox" class="check" :value="item.REP_NO" v-model="checkedPosts"></td>
               <td @click=movetocontent(item.REP_NO)>{{ item.REP_NO }}</td>
               <td>{{ item.USER_NM }}</td>
-              <td>{{ item.REP_TITLE }}</td>
-              <td>{{ cutTheContent(item.REP_CONTENT, 10) }}</td>
+              <td>{{ cutTheContent(item.REP_TITLE, 10) }}</td>
+              <td>{{ cutTheContent(item.REP_CONTENT, 40) }}</td>
               <td>{{ formatDateTime(item.REP_DATE) }}</td>
               <td>{{ getReportCategoryText(item.REP_CATEGORY)  }}</td>
+              <td>{{ getReportCheckText(item.REP_STATE)  }}</td>
             </tr>
           </tbody>
         </table>
@@ -152,6 +154,10 @@ export default {
       reportCategoryTextList: {
       0: "고장",
       1: "불편",
+      },
+      reportCheckTextList: {
+      0: "미확인",
+      1: "확인",
       },
     }
   },
@@ -269,6 +275,9 @@ export default {
     getReportCategoryText(item) {
       return this.reportCategoryTextList[item] || "Unknown";
     },
+    getReportCheckText(item) {
+      return this.reportCheckTextList[item] || "Unknown";
+    },
     formatDateTime(dateTime) {
       const today = new Date();
       const date = new Date(dateTime);
@@ -357,7 +366,7 @@ export default {
     },
     async readSelectedPosts() {
       if (this.checkedPosts.length === 0) {
-        alert('삭제할 게시글을 선택해주세요.');
+        alert('확인처리할 게시글을 선택해주세요.');
         return;
       }
 
@@ -377,8 +386,7 @@ export default {
             }
           });
 
-          console.log('사용자 삭제 성공:', response.data);
-          // 사용자 리스트에서 선택한 회원 제거
+          console.log('게시글 확인처리 성공:', response.data);
           this.checkedPosts = [];
           this.$swal({
             icon: 'success',
@@ -388,7 +396,7 @@ export default {
           });
           location.reload();
         } catch (error) {
-          console.error('사용자 삭제 실패:', error);
+          console.error('게시글 확인처리 실패:', error);
         }
       }
     },

@@ -76,8 +76,8 @@
             <tr v-for="(item, index) in pagePostList" :key="index">
               <td><input type="checkbox" class="check" :value="item.NOT_NO" v-model="checkedPosts"></td>
               <td @click=movetocontent(item.NOT_NO)>{{ item.NOT_NO }}</td>
-              <td>{{ item.NOT_TITLE }}</td>
-              <td>{{ cutTheContent(item.NOT_CONTENT,10) }}</td>
+              <td>{{ cutTheContent(item.NOT_TITLE, 10) }}</td>
+              <td>{{ cutTheContent(item.NOT_CONTENT, 40) }}</td>
               <td>{{ formatDateTime(item.NOT_DATE) }}</td>
               <td>{{ item.NOT_COUNT }}</td>
             </tr>

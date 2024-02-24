@@ -77,8 +77,8 @@
               <td><input type="checkbox" class="check" :value="item.BOD_NO" v-model="checkedPosts"></td>
               <td @click=movetocontent(item.BOD_NO)>{{ item.BOD_NO }}</td>
               <td>{{ item.USER_NM }}</td>
-              <td>{{ item.BOD_TITLE }}</td>
-              <td>{{ cutTheContent(item.BOD_CONTENT, 10) }}</td>
+              <td>{{ cutTheContent(item.BOD_TITLE, 10) }}</td>
+              <td>{{ cutTheContent(item.BOD_CONTENT, 40) }}</td>
               <td>{{ formatDateTime(item.BOD_DATE) }}</td>
               <td>{{ item.BOD_COUNT }}</td>
             </tr>
